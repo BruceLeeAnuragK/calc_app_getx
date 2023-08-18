@@ -15,35 +15,87 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Tap buttons"),
-          Obx(
-            () {
-              return Text(
-                "${controller.getCounter}",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-              );
-            },
+          Expanded(
+            child: Obx(
+              () {
+                return Text(
+                  "${controller.getCounter}",
+                  style: TextStyle(
+                    fontSize: 50,
+                    color: Colors.deepPurple,
+                  ),
+                );
+              },
+            ),
           ),
-          Row(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  controller.increament();
-                },
-                child: Icon(Icons.add),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Obx(
+                    () {
+                      return SizedBox(
+                        height: 250,
+                        width: 200,
+                        child: GridView.builder(
+                          itemCount: controller.sen.length,
+                          itemBuilder: (context, index) => Card(
+                            child: Center(
+                              child: Text("${controller.sen[index]}"),
+                            ),
+                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  Obx(
+                    () {
+                      return Container(
+                        height: 250,
+                        width: 250,
+                        child: GridView.builder(
+                          itemCount: controller.ffs.length,
+                          itemBuilder: (context, index) => Card(
+                            child: Center(
+                              child: Text("${controller.ffs[index]}"),
+                            ),
+                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  Obx(
+                    () {
+                      return Container(
+                        height: 250,
+                        width: 250,
+                        child: GridView.builder(
+                          itemCount: controller.ott.length,
+                          itemBuilder: (context, index) => Card(
+                            child: Center(
+                              child: Text("${controller.ott[index]}"),
+                            ),
+                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
-              ElevatedButton(
-                onPressed: () {
-                  controller.decreament();
-                },
-                child: Icon(Icons.remove),
-              ),
-            ],
+            ),
           ),
         ],
       ),
